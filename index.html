@@ -1,0 +1,215 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0e0f10"><link rel="manifest" href="manifest.webmanifest"><title>Anchor</title>
+<style>
+:root{--bg:#0e0f10;--s:#181b1d;--l:#2b3236;--t:#f1f3f2;--m:#8b9498;--g:#9db8a4;--b:#8fa8bd}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg);color:var(--t);font:17px/1.5 system-ui,-apple-system,Roboto,sans-serif}
+.v{display:none;flex-direction:column;gap:14px;min-height:100dvh;max-width:560px;margin:auto;padding:max(18px,env(safe-area-inset-top)) 18px max(22px,env(safe-area-inset-bottom));animation:in .7s ease}
+.v.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+@keyframes glow{50%{box-shadow:0 0 60px rgba(157,184,164,.18)}}
+@keyframes pulse{50%{box-shadow:0 0 100px rgba(157,184,164,.5)}}
+h1{margin:6px 0;font:300 20px system-ui;letter-spacing:.4em;text-transform:uppercase;text-align:center}
+h2{margin:4px 0;font-weight:400;font-size:24px}p{margin:0}.mut{color:var(--m)}.small{font-size:14px}
+button{font:inherit;color:var(--t);background:var(--s);border:1px solid var(--l);border-radius:20px;min-height:56px;padding:10px 18px;cursor:pointer;transition:.3s}
+button:active{background:var(--l)}button.on{border-color:var(--g);color:var(--g)}
+.link{background:none;border:0;color:var(--m);min-height:48px}.danger{color:#c58b8b}
+.primary{background:var(--g);color:var(--bg);border:0;font-weight:600}.primary:disabled{opacity:.35}
+.hero{min-height:34vh;border-radius:30px;border-color:rgba(157,184,164,.35);background:radial-gradient(circle at 50% 40%,rgba(157,184,164,.22),rgba(157,184,164,.04) 70%);animation:glow 6s ease-in-out infinite;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.hero b{font-size:27px;font-weight:400}.hero span{color:var(--g)}
+.row{text-align:left;display:flex;flex-direction:column}.row span{color:var(--m);font-size:15px}
+.seg{display:flex;gap:4px;background:var(--s);border-radius:22px;padding:4px}
+.seg button{flex:1;background:none;border:0;min-height:48px;border-radius:18px}.seg .on{background:var(--l);color:var(--t)}
+.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;transition:opacity .7s}
+.num{font-size:96px;font-weight:200;color:var(--g);line-height:1}
+.dots{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:10px 0}
+.dot{width:60px;height:60px;border-radius:50%;padding:0;border:2px solid var(--l);transition:background 1s,border-color 1s}.dot.f{background:var(--g);border-color:var(--g)}
+.ring{position:relative;width:260px;height:260px}
+#circ{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(143,168,189,.55),rgba(157,184,164,.22));box-shadow:0 0 50px rgba(157,184,164,.18)}
+#circ.hold{animation:pulse 4s ease-in-out}
+.lbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:22px}#cnt{font-size:44px;font-weight:200}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid button{min-height:96px}
+.card{flex:1;min-height:38vh;display:flex;align-items:center;justify-content:center;padding:28px;border-radius:28px;background:var(--s);border:1px solid var(--l);font-size:26px;line-height:1.35;text-align:center;font-weight:300;transition:opacity .25s;cursor:pointer}
+.two{display:flex;gap:12px}.two button{flex:1}
+.item{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--s);border-radius:16px;padding:12px 16px;margin-bottom:8px}
+.item.col{flex-direction:column;align-items:stretch}.sm{min-height:44px;padding:6px 14px;border-radius:14px}
+.chk{display:flex;gap:14px;background:var(--s);border-radius:16px;padding:16px}.chk input{width:26px;height:26px;flex:none;accent-color:var(--g)}
+input:not([type=checkbox]):not([type=range]),textarea{width:100%;font:inherit;color:var(--t);background:var(--s);border:1px solid var(--l);border-radius:16px;padding:14px;min-height:56px}
+textarea{resize:none;min-height:38vh}input[type=range]{width:100%;accent-color:var(--g)}
+#dw{transition:opacity 1.4s ease,transform 1.4s ease,filter 1.4s ease}#dw.sealing{opacity:0;transform:scale(.9) translateY(14px);filter:blur(10px)}
+.fade{animation:in 1.2s ease}summary{min-height:48px;color:var(--m);padding-top:10px}
+@media(prefers-reduced-motion){*{animation:none!important}}
+</style></head><body>
+
+<section id="home" class="v">
+ <h1>Anchor</h1>
+ <button class="hero" data-go="gr"><b>I'm overwhelmed</b><span>Tap to ground me</span></button>
+ <button class="row" data-go="shield"><b>Sensory Shield</b><span>Soft sound to mute the crowd</span></button>
+ <button class="row" data-go="cards"><b>Reality Anchor</b><span>Words to come back to</span></button>
+ <button class="row" data-go="dump"><b>Brain Dump</b><span>Put it down. Seal it. Lock it.</span></button>
+ <button class="link" data-go="consent">Privacy &amp; settings</button>
+</section>
+
+<section id="gr" class="v">
+ <div class="seg"><button id="m1" class="on">5-4-3-2-1</button><button id="m2">Breathe</button></div>
+ <div id="steps" class="center">
+  <div id="sn" class="num"></div><h2 id="st"></h2><p id="sh" class="mut"></p><div id="dots" class="dots"></div>
+  <button id="skip" class="link">Skip</button>
+ </div>
+ <div id="br" class="center" hidden>
+  <div class="ring"><div id="circ"></div><div class="lbl"><span id="lab"></span><span id="cnt"></span></div></div>
+  <p class="mut">Follow the circle. In, hold, out, hold.</p>
+ </div>
+ <button class="link" data-go="home">I'm feeling steadier</button>
+</section>
+
+<section id="shield" class="v">
+ <button class="link" data-go="home">&larr; Back</button><h2>Sensory Shield</h2>
+ <div class="grid" id="snd"><button data-k="white">White noise</button><button data-k="brown">Deep brown noise</button><button data-k="rain">Heavy rain</button><button data-k="hum">Low hum</button></div>
+ <input id="vol" type="range" min="0" max="1" step=".01" aria-label="Volume">
+ <div class="seg" id="tm"><button data-m="0" class="on">No timer</button><button data-m="15">15m</button><button data-m="30">30m</button><button data-m="60">60m</button></div>
+ <button id="stopb" class="link">Stop sound</button>
+ <p class="small mut">Sounds are generated on your device, so they work with no connection. Use earphones and keep Anchor open.</p>
+</section>
+
+<section id="cards" class="v">
+ <button class="link" data-go="home">&larr; Back</button>
+ <div class="seg"><button id="t1" class="on">For me</button><button id="t2">For others</button></div>
+ <div id="card" class="card" role="button" tabindex="0"></div><p id="cc" class="mut small" style="text-align:center"></p>
+ <div class="two"><button id="cp" aria-label="Previous">&larr;</button><button id="cn" aria-label="Next">&rarr;</button></div>
+ <div id="add"><input id="ci" maxlength="120" placeholder="Add your own reality check"><button id="ca" class="primary" style="width:100%;margin-top:10px">Add card</button><p id="hint" class="small mut"></p></div>
+ <div id="cl"></div>
+</section>
+
+<section id="dump" class="v">
+ <button class="link" data-go="home">&larr; Back</button>
+ <div id="dw"><textarea id="dt" placeholder="Let it out. No one sees this."></textarea></div>
+ <p id="dm" class="mut" style="text-align:center"></p>
+ <input id="dp" type="password" inputmode="numeric" maxlength="12" placeholder="Vault PIN (optional, keeps it locked)" autocomplete="off" hidden>
+ <button id="sealb" class="primary">Seal &amp; Lock</button>
+ <details id="vt" hidden><summary id="vs"></summary><input id="vp" type="password" inputmode="numeric" placeholder="Enter PIN" autocomplete="off"><button id="vu" style="width:100%;margin:10px 0">Unlock</button><div id="vl"></div></details>
+</section>
+
+<section id="consent" class="v">
+ <button class="link" data-go="gr">Need help right now? Ground me</button>
+ <h2>Your data, your choice</h2>
+ <p class="mut">Anchor works fully offline. No account, no server, no tracking. Nothing leaves this device. Choose what it may keep:</p>
+ <label class="chk"><input type="checkbox" id="c1"><span>I consent to Anchor saving my custom reality cards and settings on this device.</span></label>
+ <label class="chk"><input type="checkbox" id="c2"><span>I consent to Anchor keeping my sealed Brain Dump entries on this device, encrypted with a PIN only I know. (Optional)</span></label>
+ <label class="chk"><input type="checkbox" id="c3"><span>I understand I can change these choices or erase everything at any time.</span></label>
+ <button id="cs" class="primary" disabled>Save my choices</button>
+ <button id="cd" class="link">Use without saving anything</button>
+ <button id="ce" class="link danger">Erase all Anchor data</button>
+ <p class="small mut">Anchor is a coping tool, not medical care. If you are in danger, contact your local emergency number.</p>
+</section>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),LS=localStorage;
+const h=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const vib=()=>navigator.vibrate&&navigator.vibrate(12);
+let c=null,data={cards:[],vol:.5},vault=[],run=0,si=0,tab='me',ix=0;
+try{c=JSON.parse(LS.getItem('anchor.consent'));
+ if(c&&c.store)Object.assign(data,JSON.parse(LS.getItem('anchor.data')||'{}'));
+ if(c&&c.vault)vault=JSON.parse(LS.getItem('anchor.vault')||'[]')}catch{}
+const persist=()=>{try{c&&c.store?LS.setItem('anchor.data',JSON.stringify(data)):LS.removeItem('anchor.data');
+ c&&c.vault?LS.setItem('anchor.vault',JSON.stringify(vault)):LS.removeItem('anchor.vault')}catch{}};
+
+function go(id){$$('.v').forEach(v=>v.classList.toggle('on',v.id==id));scrollTo(0,0);
+ if(id=='gr'){si=0;mode(1);step()}else run++;
+ if(id=='cards')showCard(0);if(id=='dump')dumpUI();if(id=='consent')cfgUI()}
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)go(g.dataset.go)});
+
+/* Grounding */
+const ST=[[5,'see','Look around slowly. Pick things that feel neutral.'],[4,'touch','Your clothes, the seat, the ground under you.'],[3,'hear','Near or far. Your own breath counts.'],[2,'smell','Or remember a scent that feels calm.'],[1,'taste','Or take a slow sip of water.']];
+function mode(n){$('#m1').classList.toggle('on',n==1);$('#m2').classList.toggle('on',n==2);$('#steps').hidden=n==2;$('#br').hidden=n==1;n==2?breathe():run++}
+$('#m1').onclick=()=>{si=0;mode(1);step()};$('#m2').onclick=()=>mode(2);
+function step(){$('#steps').style.opacity=1;
+ if(si>4){$('#sn').textContent='\u2713';$('#st').textContent='You are here.';$('#sh').textContent="You are safe in this moment. Let's breathe together.";$('#dots').innerHTML='';$('#skip').hidden=true;
+  setTimeout(()=>{if($('#gr').classList.contains('on')&&si>4&&!$('#steps').hidden)mode(2)},2600);return}
+ const [n,w,t]=ST[si],r=si;$('#skip').hidden=false;$('#sn').textContent=n;$('#st').textContent=`${n>1?'things':'thing'} you can ${w}`;$('#sh').textContent=t;
+ const d=$('#dots');d.innerHTML='';let k=0;
+ for(let i=0;i<n;i++){const b=h('button','dot');b.setAttribute('aria-label','Counted');
+  b.onclick=()=>{if(b.classList.contains('f'))return;b.classList.add('f');vib();if(++k==n)setTimeout(()=>{if(si==r)next()},1200)};d.append(b)}}
+function next(){const r=si;$('#steps').style.opacity=0;setTimeout(()=>{if(si==r){si++;step()}},700)}
+$('#skip').onclick=next;
+const P=[['Breathe in',1,0],['Hold',1,1],['Breathe out',.55,0],['Hold',.55,1]];
+async function breathe(){const id=++run,w=ms=>new Promise(r=>setTimeout(r,ms)),o=$('#circ');
+ o.style.transition='none';o.style.transform='scale(.55)';o.offsetWidth;
+ for(let i=0;run==id;i=(i+1)%4){const [t,sc,hd]=P[i];$('#lab').textContent=t;
+  if(!hd){o.style.transition='transform 4s ease-in-out';o.style.transform=`scale(${sc})`}
+  o.classList.toggle('hold',!!hd);
+  for(let n=4;n>0&&run==id;n--){$('#cnt').textContent=n;await w(1000)}}}
+
+/* Sensory Shield (synthesized, no audio files) */
+let ac,gn,srcs=[],cur,tmr,mins=0,wl;const B={};
+const nbuf=t=>B[t]||(()=>{const n=ac.sampleRate*8,b=ac.createBuffer(1,n,ac.sampleRate),d=b.getChannelData(0);let l=0;
+ for(let i=0;i<n;i++){const w=Math.random()*2-1;if(t=='b'){l=(l+.02*w)/1.02;d[i]=l*3.5}else d[i]=w*.5}return B[t]=b})();
+function layer(t,g,f=[]){const s=ac.createBufferSource();s.buffer=nbuf(t);s.loop=true;let n=s;
+ for(const[ty,fr]of f){const x=ac.createBiquadFilter();x.type=ty;x.frequency.value=fr;n.connect(x);n=x}
+ const q=ac.createGain();q.gain.value=g;n.connect(q);q.connect(gn);s.start();srcs.push(s)}
+function halt(){srcs.forEach(s=>{try{s.stop()}catch{}});srcs=[];gn&&gn.disconnect();clearTimeout(tmr);cur=null;
+ $$('#snd button').forEach(b=>b.classList.remove('on'));try{wl&&wl.release()}catch{}wl=null}
+function play(k){halt();ac=ac||new(window.AudioContext||window.webkitAudioContext)();ac.resume();
+ gn=ac.createGain();gn.gain.value=+$('#vol').value;gn.connect(ac.destination);
+ if(k=='white')layer('w',.6);if(k=='brown')layer('b',1);
+ if(k=='rain'){layer('w',.5,[['lowpass',7000],['highpass',700]]);layer('b',.6)}
+ if(k=='hum'){[55,110,165].forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;g.gain.value=.3/(i+1);o.connect(g);g.connect(gn);o.start();srcs.push(o)});layer('b',.3,[['lowpass',250]])}
+ cur=k;$$('#snd button').forEach(b=>b.classList.toggle('on',b.dataset.k==k));arm();
+ try{navigator.wakeLock.request('screen').then(x=>wl=x).catch(()=>{})}catch{}}
+function arm(){clearTimeout(tmr);if(cur&&mins)tmr=setTimeout(halt,mins*6e4)}
+$$('#snd button').forEach(b=>b.onclick=()=>cur==b.dataset.k?halt():play(b.dataset.k));
+$('#stopb').onclick=halt;
+$('#vol').oninput=e=>{cur&&gn&&(gn.gain.value=+e.target.value);data.vol=+e.target.value;persist()};
+$$('#tm button').forEach(b=>b.onclick=()=>{mins=+b.dataset.m;$$('#tm button').forEach(x=>x.classList.toggle('on',x==b));arm()});
+
+/* Reality Anchor */
+const ME=['I am safe right now.','This feeling will pass.','I am in control of my breath.','I can take space whenever I need to.','My body is protecting me. I am okay.'];
+const OT=['I need a quiet moment. Please give me space.','I am having a hard time. I will be okay.','Please speak softly and slowly.','I need to step outside. I am not in danger.'];
+const deck=()=>tab=='me'?[`It is ${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'})}. I am here, in the present.`,...ME,...data.cards]:OT;
+function showCard(d){const L=deck();ix=(ix+d+L.length)%L.length;const e=$('#card');
+ $('#t1').classList.toggle('on',tab=='me');$('#t2').classList.toggle('on',tab!='me');
+ e.style.opacity=0;setTimeout(()=>{e.textContent=L[ix];e.style.opacity=1},d?250:0);$('#cc').textContent=`${ix+1} / ${L.length}`;
+ $('#add').hidden=tab!='me';const cl=$('#cl');cl.innerHTML='';
+ if(tab=='me')data.cards.forEach((t,i)=>{const r=h('div','item');r.append(h('span','',t));const b=h('button','sm','Remove');
+  b.onclick=()=>{data.cards.splice(i,1);persist();ix=0;showCard(0)};r.append(b);cl.append(r)});
+ $('#hint').textContent=c&&c.store?'Your cards are saved on this device only.':'Not saved. Turn on saving in Privacy & settings to keep your own cards.'}
+$('#card').onclick=()=>showCard(1);$('#cn').onclick=()=>showCard(1);$('#cp').onclick=()=>showCard(-1);
+$('#t1').onclick=()=>{tab='me';ix=0;showCard(0)};$('#t2').onclick=()=>{tab='others';ix=0;showCard(0)};
+$('#ca').onclick=()=>{const v=$('#ci').value.trim();if(!v)return;data.cards.push(v);$('#ci').value='';persist();ix=ME.length+data.cards.length;showCard(0)};
+
+/* Brain Dump + PIN vault (AES-GCM, key from PIN via PBKDF2) */
+const enc=new TextEncoder(),dec=new TextDecoder();
+const b64=u=>{let s='';u.forEach(x=>s+=String.fromCharCode(x));return btoa(s)},ub=s=>Uint8Array.from(atob(s),x=>x.charCodeAt(0));
+async function kdf(p,salt){const k=await crypto.subtle.importKey('raw',enc.encode(p),'PBKDF2',false,['deriveKey']);
+ return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function lockT(t,p){const s=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+ const x=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},await kdf(p,s),enc.encode(t)));return{d:Date.now(),s:b64(s),i:b64(iv),c:b64(x)}}
+async function unlockT(e,p){return dec.decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(e.i)},await kdf(p,ub(e.s)),ub(e.c)))}
+function say(t){const m=$('#dm');m.textContent=t;m.classList.remove('fade');m.offsetWidth;m.classList.add('fade')}
+function dumpUI(){const v=!!(c&&c.vault&&window.crypto&&crypto.subtle);$('#dp').hidden=!v;$('#vt').hidden=!v;$('#vs').textContent=`Locked thoughts (${vault.length})`;$('#vl').innerHTML=''}
+$('#sealb').onclick=async()=>{const t=$('#dt').value.trim();if(!t)return;const p=$('#dp').value;let kept=false;
+ if(!$('#dp').hidden&&p){if(p.length<4){say('Use at least 4 digits to lock it.');return}vault.push(await lockT(t,p));persist();kept=true}
+ $('#dw').classList.add('sealing');
+ setTimeout(()=>{$('#dt').value='';$('#dp').value='';$('#dw').classList.remove('sealing');dumpUI();
+  say(kept?'Sealed and locked. You can put it down now.':'Sealed. It is out of your head now. You can put it down.')},1500)};
+$('#vu').onclick=async()=>{const p=$('#vp').value,L=$('#vl');L.innerHTML='';let n=0;
+ for(const e of vault){try{const t=await unlockT(e,p);n++;const r=h('div','item col');
+  r.append(h('small','mut',new Date(e.d).toLocaleString()),h('p','',t));const b=h('button','sm','Delete');
+  b.onclick=()=>{vault=vault.filter(x=>x!==e);persist();r.remove();$('#vs').textContent=`Locked thoughts (${vault.length})`};r.append(b);L.append(r)}catch{}}
+ if(!n)L.textContent=vault.length?'That PIN did not open anything.':'Nothing locked yet.'};
+
+/* Consent & privacy */
+function cfgUI(){$('#c1').checked=!!(c&&c.store);$('#c2').checked=!!(c&&c.vault);$('#c3').checked=false;$('#cs').disabled=true}
+$('#c3').onchange=e=>$('#cs').disabled=!e.target.checked;
+function commit(n){if(((c&&c.store&&!n.store)||(c&&c.vault&&!n.vault))&&!confirm('Turning this off deletes what was saved on this device. Continue?'))return;
+ if(!n.store)data.cards=[];if(!n.vault)vault=[];c=Object.assign(n,{t:new Date().toISOString()});
+ try{LS.setItem('anchor.consent',JSON.stringify(c))}catch{}persist();go('home')}
+$('#cs').onclick=()=>commit({store:$('#c1').checked,vault:$('#c2').checked});
+$('#cd').onclick=()=>commit({store:false,vault:false});
+$('#ce').onclick=()=>{if(!confirm('Erase everything Anchor saved, including locked thoughts?'))return;
+ ['consent','data','vault'].forEach(k=>{try{LS.removeItem('anchor.'+k)}catch{}});c=null;data={cards:[],vol:.5};vault=[];go('consent')};
+
+$('#vol').value=data.vol;go(c?'home':'consent');
+if('serviceWorker'in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script></body></html>
